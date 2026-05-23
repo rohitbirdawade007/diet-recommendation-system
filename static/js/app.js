@@ -31,3 +31,14 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
   }, { threshold: 0.1 });
   observer.observe(modelsSection);
 })();
+
+// ── Copy result to clipboard ───────────────────────────────────────────────
+function copyResultToClipboard() {
+  var diet = document.getElementById('result-diet-name');
+  var conf = document.getElementById('result-confidence-pct');
+  if (!diet || !conf) return;
+  var text = 'DietAI Result: ' + diet.textContent + ' (' + conf.textContent + ' confidence)';
+  navigator.clipboard && navigator.clipboard.writeText(text).then(function() {
+    showToast('Result copied to clipboard!', 'success');
+  });
+}
