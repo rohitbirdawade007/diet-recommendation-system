@@ -35,3 +35,13 @@ DietAI/
 | Sugar_Level | float | Blood sugar level (mg/dL) |
 | Cholesterol | float | Cholesterol level (mg/dL) |
 | Goal | int | 1=Weight Loss, 2=Maintain, 3=Muscle Gain |
+
+## Diet Categories
+
+| Diet | Calories | Focus |
+|---|---|---|
+| Balanced | 1800-2400 kcal/day | All macronutrients in harmony |
+| Diabetic | 1500-2000 kcal/day | Blood sugar control |
+| Heart Healthy | 1600-2200 kcal/day | Cardiovascular protection |
+| High Protein | 2000-2800 kcal/day | Muscle building and recovery |
+| Low Carb | 1400-1800 kcal/day | Fat burning and insulin sensitivity |
