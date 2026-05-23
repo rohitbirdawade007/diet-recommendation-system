@@ -9,7 +9,7 @@
 
 > **An end-to-end Machine Learning system** that recommends personalised diet plans (Balanced, Diabetic, Heart Healthy, High Protein, Low Carb) based on a patient's health profile. Built with Flask REST API + premium Organic Nature-themed web UI.
 
-**Live Demo:** https://diet-recommendation-system-q5m7.onrender.com
+**Live Demo:** [https://diet-recommendation-system-q5m7.onrender.com](https://diet-recommendation-system-q5m7.onrender.com/)
 
 ---
 # DietAI - Diet Recommendation System
