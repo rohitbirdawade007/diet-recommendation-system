@@ -1,1 +1,1 @@
-﻿
+﻿# DietAI source package
