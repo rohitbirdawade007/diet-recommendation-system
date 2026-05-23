@@ -1,9 +1,17 @@
-﻿services:
+services:
   - type: web
-    name: dietai
+    name: dietai-recommendation
     runtime: python
-    buildCommand: pip install -r requirements.txt && python src/train_models.py && python src/evaluate.py
-    startCommand: gunicorn app:app --bind 0.0.0.0:10000 --workers 2
+    region: oregon
+    plan: free
+    buildCommand: >
+      pip install -r requirements.txt &&
+      python src/train_models.py &&
+      python src/evaluate.py
+    startCommand: gunicorn app:app --bind 0.0.0.0:10000 --workers 2 --timeout 120
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.0
+      - key: PYTHONIOENCODING
+        value: utf-8
+    healthCheckPath: /api/health
