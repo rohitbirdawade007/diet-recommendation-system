@@ -42,3 +42,8 @@ function copyResultToClipboard() {
     showToast('Result copied to clipboard!', 'success');
   });
 }
+
+// ── Dark mode toggle (future feature stub) ────────────────────────────────
+// window.__darkMode = false;
+// function toggleDarkMode() { ... }
+// TODO: implement dark/light theme toggle in v1.1.0
