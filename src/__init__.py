@@ -1,1 +1,1 @@
-﻿# DietAI source package
+﻿"""DietAI - ML-based Diet Recommendation System source package."""
