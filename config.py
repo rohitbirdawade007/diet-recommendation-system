@@ -11,3 +11,7 @@ MODEL_PATHS = {
     'xgboost':             os.path.join(MODELS_DIR, 'xgboost.pkl'),
     'ann':                 os.path.join(MODELS_DIR, 'ann_model.pkl'),
 }
+
+SCALER_PATH  = os.path.join(MODELS_DIR, 'scaler.pkl')
+ENCODER_PATH = os.path.join(MODELS_DIR, 'label_encoder.pkl')
+METRICS_PATH = os.path.join(MODELS_DIR, 'model_metrics.json')
