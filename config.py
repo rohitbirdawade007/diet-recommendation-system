@@ -15,3 +15,9 @@ MODEL_PATHS = {
 SCALER_PATH  = os.path.join(MODELS_DIR, 'scaler.pkl')
 ENCODER_PATH = os.path.join(MODELS_DIR, 'label_encoder.pkl')
 METRICS_PATH = os.path.join(MODELS_DIR, 'model_metrics.json')
+
+FEATURE_COLUMNS = ['Age','Gender','Height_cm','Weight_kg','BMI',
+                   'Activity_Level','Sugar_Level','Cholesterol','Goal']
+TARGET_COLUMN   = 'Diet'
+RANDOM_STATE    = 42
+TEST_SIZE       = 0.20
