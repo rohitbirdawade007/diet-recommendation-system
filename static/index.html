@@ -1,18 +1,351 @@
-﻿<!DOCTYPE html>
-<html lang='en'>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset='UTF-8'>
-  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  <title>DietAI - Smart Diet Recommendation</title>
-  <link rel='stylesheet' href='/static/css/style.css'>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2d6a4f" />
+  <meta property="og:title" content="DietAI - AI Diet Recommendation" />
+  <meta property="og:description" content="Get personalised diet plans powered by Machine Learning." />
+  <meta name="description" content="DietAI uses 5 ML models to recommend personalised diet plans based on your health profile." />
+  <meta name="keywords" content="diet recommendation, machine learning, AI nutrition, health, Flask" />
+  <title>DietAI — Smart Diet Recommendation System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
+  <script src="/static/js/app.js" defer></script>
 </head>
 <body>
-  <h1>DietAI</h1>
-  <noscript>
-    <div style="text-align:center;padding:40px;font-family:sans-serif;color:#1a2e1a">
-      <h2>JavaScript Required</h2>
-      <p>DietAI requires JavaScript to display the prediction form and results. Please enable JavaScript in your browser.</p>
+
+<!-- ── Loading Overlay ─────────────────────────────────────────── -->
+<div id="loading-overlay" role="status" aria-live="polite">
+  <div class="loader-ring"></div>
+  <p class="loader-text">Analysing your health profile…</p>
+</div>
+
+<!-- ── Navigation ─────────────────────────────────────────────── -->
+<nav id="navbar" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">🌿 DietAI</a>
+    <ul class="nav-links" role="list">
+      <li><a href="#predict" title="Predict your diet">Predict</a></li>
+      <li><a href="#models" title="Model comparison">Models</a></li>
+      <li><a href="#diet-guide" title="Diet guide">Diet Guide</a></li>
+      <li><a href="#predict" class="btn btn-primary nav-cta" title="Get your diet recommendation">Get Recommendation</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Hero ───────────────────────────────────────────────────── -->
+<section id="hero" aria-labelledby="hero-heading">
+  <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
+  <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
+  <div class="hero-orb hero-orb-3" aria-hidden="true"></div>
+
+  <div class="container">
+    <div class="hero-content">
+      <!-- Left: Text -->
+      <div class="hero-text">
+        <div class="hero-eyebrow" aria-label="AI-powered nutrition">🌱 AI-Powered Nutrition</div>
+        <h1 class="hero-title" id="hero-heading">
+          Your Personal<br />
+          <span class="gradient-text">Diet Advisor</span><br />
+          Powered by ML
+        </h1>
+        <p class="hero-desc">
+          Enter your health profile and let our ensemble of 5 Machine Learning
+          models — including XGBoost (100% accuracy) — recommend the perfect
+          personalised diet plan for you.
+        </p>
+        <div class="hero-btns">
+          <a href="#predict" class="btn btn-primary" id="hero-cta-btn">🔍 Get My Diet Plan</a>
+          <a href="#models"  class="btn btn-outline"  id="hero-models-btn">📊 View Model Stats</a>
+        </div>
+
+        <!-- Stats -->
+        <div class="hero-stats" aria-label="Project statistics">
+          <div class="stat-card">
+            <div class="stat-value" id="stat-patients">1K+</div>
+            <div class="stat-label">Patients Analysed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-models">5</div>
+            <div class="stat-label">ML Models</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-accuracy">100%</div>
+            <div class="stat-label">Best Accuracy</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Feature visual cards -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="visual-card">
+          <div class="vc-icon" style="background:rgba(45,106,79,0.12)">🧠</div>
+          <div>
+            <div class="vc-label">Algorithm</div>
+            <div class="vc-value">Random Forest + ANN Ensemble</div>
+          </div>
+        </div>
+        <div class="visual-card">
+          <div class="vc-icon" style="background:rgba(185,64,64,0.10)">🩸</div>
+          <div>
+            <div class="vc-label">Diet Types Predicted</div>
+            <div class="vc-value">Diabetic · Low Carb · Heart Healthy · High Protein · Balanced</div>
+          </div>
+        </div>
+        <div class="visual-card">
+          <div class="vc-icon" style="background:rgba(82,183,136,0.15)">📊</div>
+          <div>
+            <div class="vc-label">Model Evaluation</div>
+            <div class="vc-value">Accuracy · Precision · Recall · F1-Score</div>
+          </div>
+        </div>
+        <div class="visual-card">
+          <div class="vc-icon" style="background:rgba(200,129,58,0.13)">⚡</div>
+          <div>
+            <div class="vc-label">Deployment</div>
+            <div class="vc-value">Flask API · GitHub · Render.com</div>
+          </div>
+        </div>
+      </div>
     </div>
-  </noscript>
+  </div>
+</section>
+
+<!-- ── Predict ─────────────────────────────────────────────────── -->
+<section id="predict" class="section" aria-labelledby="predict-heading">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title" id="predict-heading">Get Your Diet Recommendation</h2>
+      <p class="section-subtitle">Fill in your health profile below. All fields are required for an accurate prediction.</p>
+    </div>
+
+    <div class="predict-grid">
+      <!-- Form -->
+      <div class="form-card">
+        <h3>🌿 Health Profile</h3>
+        <form id="predict-form" aria-label="Health profile prediction form" novalidate>
+          <div class="form-grid">
+
+            <!-- Age -->
+            <div class="form-group">
+              <label class="form-label" for="age">Age (years)</label>
+              <input class="form-control" type="number" id="age" name="Age" min="1" max="120" placeholder="e.g. 35" required title="Enter your age in years" />
+            </div>
+
+            <!-- Gender -->
+            <div class="form-group">
+              <label class="form-label" for="gender">Gender</label>
+              <select class="form-control" id="gender" name="Gender" required title="Select your gender">
+                <option value="" disabled selected>Select…</option>
+                <option value="1">Male</option>
+                <option value="0">Female</option>
+              </select>
+            </div>
+
+            <!-- Height -->
+            <div class="form-group">
+              <label class="form-label" for="height">Height (cm)</label>
+              <input class="form-control" type="number" id="height" name="Height_cm" min="50" max="250" placeholder="e.g. 170" required title="Enter your height in centimetres" />
+            </div>
+
+            <!-- Weight -->
+            <div class="form-group">
+              <label class="form-label" for="weight">Weight (kg)</label>
+              <input class="form-control" type="number" id="weight" name="Weight_kg" min="20" max="300" placeholder="e.g. 70" required title="Enter your weight in kilograms" />
+            </div>
+
+            <!-- BMI (auto) -->
+            <div class="form-group full">
+              <label class="form-label" for="bmi">BMI (auto-calculated)</label>
+              <input class="form-control" type="number" id="bmi" name="BMI" step="0.01" placeholder="Enter height & weight above" readonly title="BMI is automatically calculated from your height and weight" />
+              <div class="bmi-badge" id="bmi-badge" aria-live="polite"></div>
+            </div>
+
+            <!-- Activity Level -->
+            <div class="form-group full">
+              <label class="form-label">Activity Level</label>
+              <div class="radio-group" role="group" aria-label="Activity level selection">
+                <label class="radio-pill"><input type="radio" name="Activity_Level" value="1" /><span>😴 Sedentary</span></label>
+                <label class="radio-pill"><input type="radio" name="Activity_Level" value="2" /><span>🚶 Light</span></label>
+                <label class="radio-pill"><input type="radio" name="Activity_Level" value="3" /><span>🏃 Moderate</span></label>
+                <label class="radio-pill"><input type="radio" name="Activity_Level" value="4" /><span>💪 Active</span></label>
+                <label class="radio-pill"><input type="radio" name="Activity_Level" value="5" /><span>🔥 Very Active</span></label>
+              </div>
+            </div>
+
+            <!-- Sugar Level -->
+            <div class="form-group">
+              <label class="form-label" for="sugar">Blood Sugar (mg/dL)</label>
+              <input class="form-control" type="number" id="sugar" name="Sugar_Level" min="50" max="500" placeholder="e.g. 95" required title="Enter your blood sugar level in mg/dL" />
+            </div>
+
+            <!-- Cholesterol -->
+            <div class="form-group">
+              <label class="form-label" for="cholesterol">Cholesterol (mg/dL)</label>
+              <input class="form-control" type="number" id="cholesterol" name="Cholesterol" min="50" max="500" placeholder="e.g. 180" required title="Enter your cholesterol level in mg/dL" />
+            </div>
+
+            <!-- Goal -->
+            <div class="form-group full">
+              <label class="form-label">Health Goal</label>
+              <div class="radio-group" role="group" aria-label="Health goal selection">
+                <label class="radio-pill"><input type="radio" name="Goal" value="1" /><span>⚖️ Weight Loss</span></label>
+                <label class="radio-pill"><input type="radio" name="Goal" value="2" /><span>🔄 Maintain</span></label>
+                <label class="radio-pill"><input type="radio" name="Goal" value="3" /><span>💪 Muscle Gain</span></label>
+              </div>
+            </div>
+
+            <!-- Model selector -->
+            <div class="form-group full">
+              <label class="form-label" for="model-select">ML Model</label>
+              <select class="form-control" id="model-select" title="Select the machine learning model to use for prediction">
+                <option value="xgboost">⚡ XGBoost (100% accuracy)</option>
+                <option value="random_forest">🌲 Random Forest (99.5%)</option>
+                <option value="decision_tree">🌿 Decision Tree (99.5%)</option>
+                <option value="ann">🧠 ANN / MLP (90.5%)</option>
+                <option value="logistic_regression">📈 Logistic Regression (71%)</option>
+              </select>
+            </div>
+
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-submit" id="predict-btn" aria-label="Predict my diet recommendation">
+            <span id="btn-text">🌿 Predict My Diet</span>
+            <div class="spinner" id="btn-spinner" aria-hidden="true"></div>
+          </button>
+        </form>
+      </div>
+
+      <!-- Result panel -->
+      <div id="result-container" aria-live="polite">
+        <!-- Empty state -->
+        <div class="empty-state" id="empty-state">
+          <div class="empty-icon">🥗</div>
+          <div class="empty-text">Your personalised diet recommendation will appear here</div>
+          <p style="font-size:0.85rem;color:var(--text-subtle);margin-top:4px">Fill the form and click Predict</p>
+        </div>
+
+        <!-- Result (hidden until prediction) -->
+        <div id="result-panel" style="display:none">
+          <div class="result-card" id="result-card">
+
+            <!-- Header row -->
+            <div class="result-header">
+              <div class="diet-icon-large" id="result-icon">🥗</div>
+              <div class="diet-label-wrap">
+                <div class="diet-label-name" id="result-diet-name">—</div>
+                <div class="diet-tagline" id="result-tagline">—</div>
+              </div>
+              <div class="confidence-block">
+                <div class="gauge-ring" id="gauge-ring" role="meter" aria-label="Prediction confidence">
+                  <span class="gauge-pct" id="result-confidence-pct">—</span>
+                </div>
+                <div class="confidence-label">Confidence</div>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <p id="result-description" style="color:var(--text-secondary);font-size:0.9rem;line-height:1.7;margin-bottom:16px"></p>
+
+            <!-- Calories -->
+            <div class="diet-card-cal" id="result-calories" style="margin-bottom:20px"></div>
+
+            <!-- Key nutrients -->
+            <div id="key-nutrients" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px"></div>
+
+            <!-- Probability bars -->
+            <div class="prob-section">
+              <h4>Diet Probabilities</h4>
+              <div id="prob-bars"></div>
+            </div>
+
+            <!-- Meal plan -->
+            <div class="meal-plan" id="meal-plan-section">
+              <h4>Sample Meal Plan</h4>
+              <div class="meal-grid" id="meal-grid"></div>
+            </div>
+
+            <!-- Foods -->
+            <div class="foods-section" id="foods-section">
+              <div class="foods-list eat">
+                <h4>✅ Foods to Eat</h4>
+                <ul id="foods-eat"></ul>
+              </div>
+              <div class="foods-list avoid">
+                <h4>❌ Foods to Avoid</h4>
+                <ul id="foods-avoid"></ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Models ──────────────────────────────────────────────────── -->
+<section id="models" class="section" aria-labelledby="models-heading">
+  <div class="container">
+    <div class="section-header center">
+      <h2 class="section-title" id="models-heading">Model Performance</h2>
+      <p class="section-subtitle">Comparing 5 machine learning classifiers trained on 1,000 patient records across 4 metrics.</p>
+    </div>
+
+    <!-- Model stat cards -->
+    <div class="models-grid" id="model-cards" aria-label="Model accuracy cards"></div>
+
+    <!-- Chart -->
+    <div class="chart-container">
+      <div class="chart-tabs" role="tablist" aria-label="Select metric to display">
+        <button class="chart-tab active" data-metric="accuracy"  role="tab" id="tab-accuracy"  aria-selected="true">Accuracy</button>
+        <button class="chart-tab"        data-metric="precision" role="tab" id="tab-precision"  aria-selected="false">Precision</button>
+        <button class="chart-tab"        data-metric="recall"    role="tab" id="tab-recall"     aria-selected="false">Recall</button>
+        <button class="chart-tab"        data-metric="f1_score"  role="tab" id="tab-f1"         aria-selected="false">F1-Score</button>
+      </div>
+      <div class="canvas-wrap">
+        <canvas id="model-chart" aria-label="Model comparison bar chart"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Diet Guide ──────────────────────────────────────────────── -->
+<section id="diet-guide" class="section" aria-labelledby="dietguide-heading">
+  <div class="container">
+    <div class="section-header center">
+      <h2 class="section-title" id="dietguide-heading">Diet Guide</h2>
+      <p class="section-subtitle">Explore all 5 diet categories — learn what to eat, avoid, and why each plan works.</p>
+    </div>
+    <div class="diet-cards-grid" id="diet-cards-grid" aria-label="Diet category cards"></div>
+  </div>
+</section>
+
+<!-- ── Footer ──────────────────────────────────────────────────── -->
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-logo">🌿 DietAI</div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="#hero">Home</a>
+      <a href="#predict">Predict</a>
+      <a href="#models">Models</a>
+      <a href="#diet-guide">Diet Guide</a>
+      <a href="https://github.com/rohitbirdawade007/diet-recommendation-system" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
+    <p class="footer-copy">Built with 🌿 by Rohit Birdawade &nbsp;·&nbsp; Flask + scikit-learn + XGBoost &nbsp;·&nbsp; MIT License</p>
+  </div>
+</footer>
+
+<noscript>
+  <div style="text-align:center;padding:40px;font-family:sans-serif;color:#1a2e1a;background:#f4f8f1">
+    <h2>JavaScript Required</h2>
+    <p>DietAI requires JavaScript to display the prediction form and results. Please enable JavaScript in your browser.</p>
+  </div>
+</noscript>
+
 </body>
 </html>
