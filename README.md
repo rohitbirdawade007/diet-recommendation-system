@@ -21,3 +21,17 @@ DietAI/
 ├── render.yaml             # Render.com deploy config
 └── README.md
 ```
+
+## Input Features
+
+| Feature | Type | Description |
+|---|---|---|
+| Age | int | Patient age in years |
+| Gender | int | 0 = Female, 1 = Male |
+| Height_cm | float | Height in centimetres |
+| Weight_kg | float | Weight in kilograms |
+| BMI | float | Body Mass Index (auto-calculated) |
+| Activity_Level | int | 1=Sedentary, 2=Light, 3=Moderate, 4=Active, 5=Very Active |
+| Sugar_Level | float | Blood sugar level (mg/dL) |
+| Cholesterol | float | Cholesterol level (mg/dL) |
+| Goal | int | 1=Weight Loss, 2=Maintain, 3=Muscle Gain |
