@@ -77,5 +77,5 @@ DietAI/
 MIT License — free to use for educational and personal projects.
 
 ---
-Made with ❤️ and 🌿 by Rohit Birdawade
+Made with by Rohit Birdawade
 
