@@ -1,5 +1,4 @@
 ﻿# -*- coding: utf-8 -*-
-"""src/train_models.py - Train all 5 ML models and save artifacts."""
 import sys, os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
@@ -7,7 +6,6 @@ import joblib
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.neural_network import MLPClassifier
 from sklearn.utils.class_weight import compute_sample_weight
 from xgboost import XGBClassifier
 from config import MODEL_PATHS, MODELS_DIR, RANDOM_STATE
@@ -45,27 +43,3 @@ def train_xgboost(X_train, y_train, n_classes):
     model.fit(X_train, y_train, sample_weight=sw)
     joblib.dump(model, MODEL_PATHS['xgboost'])
     print(f'      Saved -> {MODEL_PATHS[\"xgboost\"]}'); return model
-
-def train_ann(X_train, y_train):
-    """MLP Neural Network - Python 3.14 compatible via sklearn."""
-    print('\n[5/5] Training ANN (MLP Neural Network) ...')
-    model = MLPClassifier(hidden_layer_sizes=(128, 64, 32), activation='relu',
-                          solver='adam', alpha=1e-4, batch_size=32,
-                          learning_rate_init=1e-3, max_iter=300,
-                          early_stopping=True, validation_fraction=0.15,
-                          n_iter_no_change=20, random_state=RANDOM_STATE, verbose=False)
-    model.fit(X_train, y_train)
-    joblib.dump(model, MODEL_PATHS['ann'])
-    print(f'      Saved -> {MODEL_PATHS[\"ann\"]}'); return model
-
-if __name__ == '__main__':
-    os.makedirs(MODELS_DIR, exist_ok=True)
-    X_train, X_test, y_train, y_test, scaler, le = get_preprocessed_data()
-    n_classes = len(le.classes_)
-    print(f'\n[INFO] n_classes = {n_classes} | classes = {list(le.classes_)}')
-    train_logistic_regression(X_train, y_train, n_classes)
-    train_decision_tree(X_train, y_train)
-    train_random_forest(X_train, y_train)
-    train_xgboost(X_train, y_train, n_classes)
-    train_ann(X_train, y_train)
-    print('\nAll 5 models trained and saved successfully!')
