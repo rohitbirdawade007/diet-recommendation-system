@@ -1,4 +1,18 @@
-﻿# DietAI - Diet Recommendation System
+﻿# 🌿 DietAI - AI-Powered Diet Recommendation System
+
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)](https://python.org)
+[![Flask](https://img.shields.io/badge/Flask-3.0-black?logo=flask)](https://flask.palletsprojects.com)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.4-F7931E?logo=scikit-learn&logoColor=white)](https://scikit-learn.org)
+[![XGBoost](https://img.shields.io/badge/XGBoost-2.0-189AB4)](https://xgboost.ai)
+[![License: MIT](https://img.shields.io/badge/License-MIT-2d6a4f)](LICENSE)
+[![GitHub commits](https://img.shields.io/github/commit-activity/t/rohitbirdawade007/diet-recommendation-system)](https://github.com/rohitbirdawade007/diet-recommendation-system)
+
+> **An end-to-end Machine Learning system** that recommends personalised diet plans (Balanced, Diabetic, Heart Healthy, High Protein, Low Carb) based on a patient's health profile. Built with Flask REST API + premium Organic Nature-themed web UI.
+
+**Live Demo:** https://dietai-recommendation.onrender.com
+
+---
+# DietAI - Diet Recommendation System
 ## Project Architecture
 
 ```
@@ -64,3 +78,4 @@ MIT License — free to use for educational and personal projects.
 
 ---
 Made with ❤️ and 🌿 by Rohit Birdawade
+
