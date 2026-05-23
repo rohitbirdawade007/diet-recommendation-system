@@ -32,3 +32,9 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ═══ High Contrast Support ════════════════════════════════════════= */
+@media (forced-colors: active) {
+  .btn-primary { forced-color-adjust: none; }
+  .form-control { border-color: ButtonText; }
+}
