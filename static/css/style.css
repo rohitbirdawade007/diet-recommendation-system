@@ -1,1 +1,25 @@
 ﻿/* DietAI styles - initial */
+/* ═══ Accessibility ══════════════════════════════════════════════ */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ═══ Custom Selection ════════════════════════════════════════════ */
+::selection {
+  background: rgba(82,183,136,0.30);
+  color: var(--forest);
+}
+
+/* ═══ Print Styles ════════════════════════════════════════════════ */
+@media print {
+  #navbar, .hero-btns, footer, #predict-btn { display: none; }
+  body { background: white; color: black; }
+  .section-title { color: #1a2e1a !important; }
+}
