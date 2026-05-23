@@ -57,3 +57,10 @@ DietAI/
 | Fonts | Google Fonts (Outfit + Inter) |
 | Deployment | Render.com (free tier) |
 | Version Control | Git / GitHub |
+
+## License
+
+MIT License — free to use for educational and personal projects.
+
+---
+Made with ❤️ and 🌿 by Rohit Birdawade
