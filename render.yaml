@@ -1,10 +1,9 @@
-services:
+﻿services:
   - type: web
-    name: diet-recommendation-system
-    env: python
-    plan: free
+    name: dietai
+    runtime: python
     buildCommand: pip install -r requirements.txt && python src/train_models.py && python src/evaluate.py
-    startCommand: gunicorn app:app
+    startCommand: gunicorn app:app --bind 0.0.0.0:10000 --workers 2
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.0
