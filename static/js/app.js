@@ -17,3 +17,17 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     }
   });
 });
+
+// ── IntersectionObserver for lazy chart loading ────────────────────────────
+(function() {
+  var modelsSection = document.getElementById('models');
+  if (!modelsSection || !window.IntersectionObserver) return;
+  var observed = false;
+  var observer = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting && !observed) {
+      observed = true;
+      loadModels();   // fetch and render chart only when visible
+    }
+  }, { threshold: 0.1 });
+  observer.observe(modelsSection);
+})();
