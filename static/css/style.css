@@ -45,3 +45,15 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 .stat-value { animation: count-up 0.6s ease both; }
+
+/* ═══ Skeleton Loading ═══════════════════════════════════════════════ */
+.skeleton {
+  background: linear-gradient(90deg, var(--foam) 25%, var(--mist) 50%, var(--foam) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+}
+@keyframes skeleton-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
