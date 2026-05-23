@@ -9,7 +9,7 @@
 
 > **An end-to-end Machine Learning system** that recommends personalised diet plans (Balanced, Diabetic, Heart Healthy, High Protein, Low Carb) based on a patient's health profile. Built with Flask REST API + premium Organic Nature-themed web UI.
 
-**Live Demo:** https://dietai-recommendation.onrender.com
+**Live Demo:** https://diet-recommendation-system-q5m7.onrender.com
 
 ---
 # DietAI - Diet Recommendation System
@@ -78,4 +78,5 @@ MIT License — free to use for educational and personal projects.
 
 ---
 Made with by Rohit Birdawade
+
 
