@@ -290,19 +290,19 @@ a { text-decoration: none; color: inherit; }
 
 /* Radio pills */
 .radio-group { display: flex; gap: 10px; flex-wrap: wrap; }
-.radio-pill input { display: none; }
-.radio-pill label {
+.radio-pill {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 8px 16px; border-radius: 99px;
   border: 1.5px solid var(--border); font-size: 0.85rem; font-weight: 500;
   cursor: pointer; color: var(--text-secondary);
   transition: all 0.2s; background: white;
 }
-.radio-pill input:checked + label {
+.radio-pill input { display: none; }
+.radio-pill:has(input:checked) {
   background: var(--grad-primary); border-color: transparent;
   color: white; box-shadow: var(--shadow-btn);
 }
-.radio-pill label:hover { border-color: var(--sage); color: var(--primary); }
+.radio-pill:hover { border-color: var(--sage); color: var(--primary); }
 
 .btn-submit { width: 100%; margin-top: 24px; padding: 15px; font-size: 1rem; justify-content: center; }
 .spinner {
