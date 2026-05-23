@@ -5,7 +5,8 @@ import pandas as pd
 import numpy as np
 import joblib
 from sklearn.preprocessing import LabelEncoder, StandardScaler
-from config import DATA_PATH, ENCODER_PATH, SCALER_PATH, TARGET_COLUMN, FEATURE_COLUMNS
+from sklearn.model_selection import train_test_split
+from config import DATA_PATH, ENCODER_PATH, SCALER_PATH, TARGET_COLUMN, FEATURE_COLUMNS, RANDOM_STATE, TEST_SIZE
 
 def load_data():
     df = pd.read_csv(DATA_PATH)
@@ -25,3 +26,6 @@ def scale_features(df):
     X_s    = scaler.fit_transform(X.values)
     joblib.dump(scaler, SCALER_PATH)
     return X_s, scaler
+
+def split_data(X, y):
+    return train_test_split(X, y, test_size=TEST_SIZE, random_state=RANDOM_STATE, stratify=y)
