@@ -39,3 +39,6 @@ desktop.ini
 
 # Logs
 *.log
+# Build scripts
+make_commits*.ps1
+make_commits*.py
