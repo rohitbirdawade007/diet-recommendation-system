@@ -45,3 +45,15 @@ DietAI/
 | Heart Healthy | 1600-2200 kcal/day | Cardiovascular protection |
 | High Protein | 2000-2800 kcal/day | Muscle building and recovery |
 | Low Carb | 1400-1800 kcal/day | Fat burning and insulin sensitivity |
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| ML Framework | scikit-learn 1.3+, XGBoost 2.0 |
+| Backend | Flask 3.0, Flask-CORS, Gunicorn |
+| Frontend | Vanilla HTML5 / CSS3 / JavaScript |
+| Charts | Chart.js 4.x |
+| Fonts | Google Fonts (Outfit + Inter) |
+| Deployment | Render.com (free tier) |
+| Version Control | Git / GitHub |
